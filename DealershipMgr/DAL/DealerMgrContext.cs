@@ -6,7 +6,7 @@ using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Web;
 
-namespace Dealership.DAL
+namespace DealershipMgr.DAL
 {
     public class DealerMgrContext : DbContext
     {

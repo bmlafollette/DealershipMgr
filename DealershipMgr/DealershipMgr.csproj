@@ -129,6 +129,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SalespersonController.cs" />
     <Compile Include="DAL\DealerMgrContext.cs" />
     <Compile Include="DAL\DealerMgrInitializer.cs" />
     <Compile Include="Global.asax.cs">
@@ -177,6 +178,11 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Salesperson\Create.cshtml" />
+    <Content Include="Views\Salesperson\Delete.cshtml" />
+    <Content Include="Views\Salesperson\Details.cshtml" />
+    <Content Include="Views\Salesperson\Edit.cshtml" />
+    <Content Include="Views\Salesperson\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

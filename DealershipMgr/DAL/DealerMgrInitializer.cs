@@ -5,9 +5,9 @@ using System.Linq;
 using System.Web;
 using System.Data.Entity;
 
-namespace Dealership.DAL
+namespace DealershipMgr.DAL
 {
-    public class DealerInitializer : System.Data.Entity.DropCreateDatabaseIfModelChanges<DealerMgrContext>
+    public class DealerMgrInitializer : System.Data.Entity.DropCreateDatabaseIfModelChanges<DealerMgrContext>
     {
         // Takes the datbase context object as an input parameter
         // Code uses the object to add new entities to the database
