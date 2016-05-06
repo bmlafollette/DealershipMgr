@@ -29,6 +29,9 @@
         <th>
             @Html.DisplayNameFor(model => model.MetSalesGoal)
         </th>
+        <th>
+            Client(s)
+        </th>
         <th></th>
     </tr>
 
@@ -51,6 +54,14 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.MetSalesGoal)
+        </td>
+        <td>
+            @{
+                foreach (var client in item.Clients)
+                {
+                    @client.ClientID @:  @client.FullName <br />
+                }
+            }
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |

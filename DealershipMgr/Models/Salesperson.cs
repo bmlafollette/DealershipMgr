@@ -13,14 +13,14 @@ namespace DealershipMgr.Models
         public string LastName { get; set; }
         public string FirstName { get; set; }
 
-        //[Display(Name = "Full Name")]
-        //public string FullName
-        //{
-        //    get
-        //    {
-        //        return LastName + ", " + FirstName;
-        //    }
-        //}
+        [Display(Name = "Salesperson")]
+        public string FullName
+        {
+            get
+            {
+                return LastName + ", " + FirstName;
+            }
+        }
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]

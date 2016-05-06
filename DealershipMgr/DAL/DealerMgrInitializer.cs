@@ -31,8 +31,9 @@ namespace DealershipMgr.DAL
 
             var clients = new List<Client>
             {
-                new Client{FirstName="John",LastName="Smith",RelationshipDate=DateTime.Parse("2015-04-05"),PurchasesToDate=39999,City="Indianapolis",PhoneNumber=3171234567,Email="myemail@gmail.com"},
-                new Client{FirstName="Jane",LastName="Doe",RelationshipDate=DateTime.Parse("2013-04-05"),PurchasesToDate=31999,City="Indianapolis",PhoneNumber=3179876543,Email="myotheremail@gmail.com"}
+                new Client{FirstName="John",LastName="Smith",RelationshipDate=DateTime.Parse("2015-04-05"),PurchasesToDate=39999,City="Indianapolis",PhoneNumber="317-123-4567",Email="myemail@gmail.com"},
+                new Client{FirstName="Jane",LastName="Doe",RelationshipDate=DateTime.Parse("2013-04-05"),PurchasesToDate=31999,City="Indianapolis",PhoneNumber="317-987-6543",Email="myotheremail@gmail.com"},
+                new Client{FirstName="Susie",LastName="Homemaker",RelationshipDate=DateTime.Parse("2011-04-05"),PurchasesToDate=30999,City="Indianapolis",PhoneNumber="317-555-6666",Email="mymail@gmail.com"}
             };
             clients.ForEach(s => context.Clients.Add(s));
             context.SaveChanges();

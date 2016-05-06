@@ -69,6 +69,34 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
+                <table>
+                    <tr>
+                        @{
+                            int cnt = 0;
+                            List<DealershipMgr.ViewModels.AssignedClientData> clients = ViewBag.Clients;
+
+                            foreach (var client in clients)
+                            {
+                                if (cnt++ % 3 == 0)
+                                {
+                                    @:</tr><tr>
+                                }
+                                @:<td>
+                                    <input type="checkbox"
+                                           name="selectedCourses"
+                                           value="@client.ClientID"
+                                           @(Html.Raw(client.Assigned ? "checked=\"checked\"" : "")) />
+                                    @client.ClientID @:  @client.FullName
+                                    @:</td>
+                            }
+                            @:</tr>
+                        }
+                </table>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
