@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Salespersons</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -30,7 +30,7 @@
             @Html.DisplayNameFor(model => model.MetSalesGoal)
         </th>
         <th>
-            Client(s)
+            @Html.DisplayNameFor(model => model.Clients)
         </th>
         <th></th>
     </tr>

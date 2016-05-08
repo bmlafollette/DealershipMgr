@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-
+/*
 namespace DealershipMgr.ViewModels
 {
     public class SalespersonIndexData
@@ -14,3 +14,4 @@ namespace DealershipMgr.ViewModels
         public IEnumerable<Vehicle> Vehicles { get; set; }
     }
 }
+*/

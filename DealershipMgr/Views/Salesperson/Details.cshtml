@@ -58,6 +58,19 @@
             @Html.DisplayFor(model => model.MetSalesGoal)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => Model.Clients)
+        </dt>
+
+        <dd>
+            @{
+                foreach (var client in Model.Clients)
+                {
+                    @client.ClientID @:  @client.FullName <br />
+                }
+            }
+        </dd>
+
     </dl>
 </div>
 <p>
