@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-/*
+
 namespace DealershipMgr.ViewModels
 {
-    public class AssignedClientData
+    public class AssignedLocationData
     {
-        public int ClientID { get; set; }
-        public string FullName { get; set; }
+        public int LocationID { get; set; }
+        public string LocationName { get; set; }
         public bool Assigned { get; set; }
     }
 }
-*/

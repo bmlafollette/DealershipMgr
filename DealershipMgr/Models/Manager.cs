@@ -9,7 +9,11 @@ namespace DealershipMgr.Models
     public class Manager
     {
         public int ID { get; set; }
+
+        [Display(Name = "Last Name")]
         public string LastName { get; set; }
+
+        [Display(Name = "First Name")]
         public string FirstName { get; set; }
 
         [DataType(DataType.Date)]

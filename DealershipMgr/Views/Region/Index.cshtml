@@ -1,0 +1,96 @@
+﻿@model DealershipMgr.ViewModels.RegionIndexData
+
+@{
+    ViewBag.Title = "Regions";
+}
+
+<h2>Regions</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Region Name
+        </th>
+        <th>
+            Sales YTD
+        </th>
+        <th>
+            Sales Goal
+        </th>
+        <th>
+            Met Sales Goal?
+        </th>
+        <th>
+            Locations
+        </th>
+    </tr>
+
+@foreach (var item in Model.Regions) {
+    string selectedRow = "";
+    if (item.RegionID == ViewBag.RegionID)
+    {
+        // Uses the Bootstrap class = success.
+        selectedRow = "success";
+    }
+    <tr class="@selectedRow">
+        <td>
+            @Html.DisplayFor(modelItem => item.RegionName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SalesYtd)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SalesGoal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MetSalesGoal)
+        </td>
+        <td>
+            @foreach (var location in item.Locations)
+            {
+                @location.LocationID @:  @location.LocationName <br />
+            }
+        </td>
+        <td>
+            @Html.ActionLink("Select", "Index", new { id = item.RegionID }) |
+            @Html.ActionLink("Edit", "Edit", new { id = item.RegionID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.RegionID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.RegionID })
+        </td>
+    </tr>
+}
+
+</table>
+
+@if (Model.Locations != null)
+{
+    <h3>Locations</h3>
+    <table class="table">
+        @foreach (var item in Model.Locations)
+        {
+            <tr>
+                <th>Location</th>
+                <th>Salespersons</th>
+            </tr>
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LocationName)
+                </td>
+                @foreach (var item2 in Model.Salespersons)
+                {
+                    <td>
+                        @item2.FullName
+                    </td>
+                    <td>
+                        @item2.HireDate
+                    </td>
+                }
+            </tr>
+        }
+    </table>
+}
+

@@ -10,7 +10,11 @@ namespace DealershipMgr.Models
     public class Salesperson
     {
         public int ID { get; set; }
+
+        [Display(Name = "Last Name")]
         public string LastName { get; set; }
+
+        [Display(Name = "First Name")]
         public string FirstName { get; set; }
 
         [Display(Name = "Salesperson")]
@@ -29,12 +33,15 @@ namespace DealershipMgr.Models
 
         [DataType(DataType.Currency)]
         [Column(TypeName = "money")]
+        [Display(Name = "Sales YTD")]
         public decimal SalesYtd { get; set; }
 
         [DataType(DataType.Currency)]
         [Column(TypeName = "money")]
+        [Display(Name = "Sales Goal")]
         public decimal SalesGoal { get; set; }
 
+        [Display(Name = "Met Sales Goal?")]
         public bool MetSalesGoal { get; set; }
 
         public virtual Manager Manager { get; set; }
