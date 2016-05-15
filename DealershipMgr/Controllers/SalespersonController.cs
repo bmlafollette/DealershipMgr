@@ -18,6 +18,7 @@ namespace DealershipMgr.Controllers
         // GET: Salesperson
         public ActionResult Index()
         {
+            var salespersons = db.Salespersons.Include(c => c.Location);
             return View(db.Salespersons.ToList());
         }
 
@@ -39,6 +40,7 @@ namespace DealershipMgr.Controllers
         // GET: Salesperson/Create
         public ActionResult Create()
         {
+            ViewBag.LocationID = new SelectList(db.Locations, "LocationID", "LocationName");
             return View();
         }
 
@@ -47,7 +49,7 @@ namespace DealershipMgr.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,LastName,FirstName,HireDate,SalesYtd,SalesGoal,MetSalesGoal")] Salesperson salesperson)
+        public ActionResult Create([Bind(Include = "ID,LastName,FirstName,HireDate,SalesYtd,SalesGoal,MetSalesGoal,LocationID")] Salesperson salesperson)
         {
             if (ModelState.IsValid)
             {
@@ -55,7 +57,7 @@ namespace DealershipMgr.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            ViewBag.LocationID = new SelectList(db.Locations, "LocationID", "LocationName", salesperson.LocationID);
             return View(salesperson);
         }
 
@@ -71,6 +73,7 @@ namespace DealershipMgr.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.LocationID = new SelectList(db.Locations, "LocationID", "LocationName", salesperson.LocationID);
             return View(salesperson);
         }
 
@@ -87,6 +90,7 @@ namespace DealershipMgr.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.LocationID = new SelectList(db.Locations, "LocationID", "LocationName", salesperson.LocationID);
             return View(salesperson);
         }
 

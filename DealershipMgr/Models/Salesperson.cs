@@ -44,6 +44,8 @@ namespace DealershipMgr.Models
         [Display(Name = "Met Sales Goal?")]
         public bool MetSalesGoal { get; set; }
 
+        public int? LocationID { get; set; }
+
         public virtual Manager Manager { get; set; }
         public virtual Location Location { get; set; }
         public virtual Region Region { get; set; }
