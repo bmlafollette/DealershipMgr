@@ -69,16 +69,19 @@
 {
     <h3>Locations</h3>
     <table class="table">
+        <tr>
+            <th>Location</th>
+            <th>Salespersons</th>
+        </tr>
+
         @foreach (var item in Model.Locations)
         {
             <tr>
-                <th>Location</th>
-                <th>Salespersons</th>
-            </tr>
-
-            <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.LocationName)
+                    @item.LocationID
+                </td>
+                <td>
+                    @item.LocationName
                 </td>
                 @foreach (var item2 in Model.Salespersons)
                 {
@@ -91,6 +94,7 @@
                 }
             </tr>
         }
+
     </table>
 }
 

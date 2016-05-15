@@ -43,6 +43,19 @@
             @Html.DisplayFor(model => model.MetSalesGoal)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => Model.Locations)
+        </dt>
+
+        <dd>
+            @{
+                foreach (var location in Model.Locations)
+                {
+                    @location.LocationID @:  @location.LocationName <br />
+                }
+            }
+        </dd>
+
     </dl>
 
     @using (Html.BeginForm()) {

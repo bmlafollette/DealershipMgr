@@ -18,18 +18,18 @@ namespace DealershipMgr.Controllers
         private DealerMgrContext db = new DealerMgrContext();
 
         // GET: Region
-        public ActionResult Index(int? regionID, int? locationID)
+        public ActionResult Index(int? id, int? locationID)
         {
             var viewModel = new RegionIndexData();
             viewModel.Regions = db.Regions
                 .Include(i => i.Locations.Select(c => c.Salespersons))
                 .OrderBy(i => i.RegionName);
 
-            if (regionID != null)
+            if (id != null)
             {
-                ViewBag.RegionID = regionID.Value;
+                ViewBag.RegionID = id.Value;
                 viewModel.Locations = viewModel.Regions.Where(
-                    i => i.RegionID == regionID.Value).Single().Locations;
+                    i => i.RegionID == id.Value).Single().Locations;
             }
 
             /*if (locationID != null)
@@ -53,13 +53,13 @@ namespace DealershipMgr.Controllers
         }
 
         // GET: Region/Details/5
-        public ActionResult Details(int? regionID)
+        public ActionResult Details(int? id)
         {
-            if (regionID == null)
+            if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Region region = db.Regions.Find(regionID);
+            Region region = db.Regions.Find(id);
             if (region == null)
             {
                 return HttpNotFound();
@@ -70,9 +70,6 @@ namespace DealershipMgr.Controllers
         // GET: Region/Create
         public ActionResult Create()
         {
-            var region = new Region();
-            region.Locations = new List<Location>();
-            PopulateAssignedLocationData(region);
             return View();
         }
 
@@ -83,37 +80,23 @@ namespace DealershipMgr.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "RegionID,RegionName,SalesYtd,SalesGoal,MetSalesGoal")] Region region)
         {
-            /*if (selectedLocations != null)
-            {
-                region.Locations = new List<Location>();
-                foreach (var location in selectedLocations)
-                {
-                    var locationToAdd = db.Locations.Find(int.Parse(location));
-                    region.Locations.Add(locationToAdd);
-                }
-            }*/
             if (ModelState.IsValid)
             {
                 db.Regions.Add(region);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            PopulateAssignedLocationData(region);
             return View(region);
         }
 
         // GET: Region/Edit/5
-        public ActionResult Edit(int? regionID)
+        public ActionResult Edit(int? id)
         {
-            if (regionID == null)
+            if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Region region = db.Regions
-                .Include(i => i.Locations)
-                .Where(i => i.RegionID == regionID)
-                .Single();
-            PopulateAssignedLocationData(region);
+            Region region = db.Regions.Find(id);
             if (region == null)
             {
                 return HttpNotFound();
@@ -121,94 +104,20 @@ namespace DealershipMgr.Controllers
             return View(region);
         }
 
-        // Provides info for the check box array using the AssignedCourseData view model class.
-        private void PopulateAssignedLocationData(Region region)
-        {
-            var allLocations = db.Locations;
-            var regionLocations = new HashSet<int>(region.Locations.Select(c => c.LocationID));
-            var viewModel = new List<AssignedLocationData>();
-            foreach (var location in allLocations)
-            {
-                viewModel.Add(new AssignedLocationData
-                {
-                    LocationID = location.LocationID,
-                    LocationName = location.LocationName,
-                    Assigned = regionLocations.Contains(location.LocationID)
-                });
-            }
-            ViewBag.Courses = viewModel;
-        }
-
         // POST: Region/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost, ActionName("Edit")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditPost(int? regionID, string[] selectedLocations)
+        public ActionResult Edit([Bind(Include = "RegionID,RegionName,SalesYtd,SalesGoal,MetSalesGoal")] Region region)
         {
-            if (regionID == null)
+            if (ModelState.IsValid)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                db.Entry(region).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
             }
-            var regionToUpdate = db.Regions
-               .Include(i => i.Locations)
-               .Where(i => i.RegionID == regionID)
-               .Single();
-
-            //if (TryUpdateModel(regionToUpdate, "",
-            //   new string[] { "RegionName", "SalesYtd", "SalesGoal", "MetSalesGoal" }))
-            //{
-            //    try
-            //    {
-            //        if (String.IsNullOrWhiteSpace(regionToUpdate.Locations))
-            //        {
-            //            regionToUpdate.Locations = null;
-            //        }
-
-            //        UpdateRegionLocations(selectedLocations, regionToUpdate);
-
-            //        db.SaveChanges();
-
-            //        return RedirectToAction("Index");
-            //    }
-            //    catch (RetryLimitExceededException /* dex */)
-            //    {
-            //        //Log the error (uncomment dex variable name and add a line here to write a log.
-            //        ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
-            //    }
-            //}
-            PopulateAssignedLocationData(regionToUpdate);
-            return View(regionToUpdate);
-        }
-
-        private void UpdateRegionLocations(string[] selectedLocations, Region regionToUpdate)
-        {
-            if (selectedLocations == null)
-            {
-                regionToUpdate.Locations = new List<Location>();
-                return;
-            }
-
-            var selectedLocationsHS = new HashSet<string>(selectedLocations);
-            var regionLocations = new HashSet<int>
-                (regionToUpdate.Locations.Select(c => c.LocationID));
-            foreach (var location in db.Locations)
-            {
-                if (selectedLocationsHS.Contains(location.LocationID.ToString()))
-                {
-                    if (!regionLocations.Contains(location.LocationID))
-                    {
-                        regionToUpdate.Locations.Add(location);
-                    }
-                }
-                else
-                {
-                    if (regionLocations.Contains(location.LocationID))
-                    {
-                        regionToUpdate.Locations.Remove(location);
-                    }
-                }
-            }
+            return View(region);
         }
 
         // GET: Region/Delete/5
@@ -231,20 +140,8 @@ namespace DealershipMgr.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Region region = db.Regions
-              .Where(i => i.RegionID == id)
-              .Single();
-
+            Region region = db.Regions.Find(id);
             db.Regions.Remove(region);
-
-            /*var department = db.Departments
-                .Where(d => d.InstructorID == id)
-                .SingleOrDefault();
-            if (department != null)
-            {
-                department.InstructorID = null;
-            }*/
-
             db.SaveChanges();
             return RedirectToAction("Index");
         }
