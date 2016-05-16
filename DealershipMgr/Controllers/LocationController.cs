@@ -18,7 +18,7 @@ namespace DealershipMgr.Controllers
         // GET: Location
         public ActionResult Index()
         {
-            var locations = db.Locations.Include(c => c.Region);
+            var locations = db.Locations.Include(c => c.Salespersons);
             return View(db.Locations.ToList());
         }
 
@@ -40,7 +40,6 @@ namespace DealershipMgr.Controllers
         // GET: Location/Create
         public ActionResult Create()
         {
-            ViewBag.RegionID = new SelectList(db.Regions, "RegionID", "RegionName");
             return View();
         }
 
@@ -49,7 +48,7 @@ namespace DealershipMgr.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "LocationID,LocationName,RegionID")] Location location)
+        public ActionResult Create([Bind(Include = "LocationID,LocationName,SalesYtd,SalesGoal,MetSalesGoal")] Location location)
         {
             if (ModelState.IsValid)
             {
@@ -57,7 +56,7 @@ namespace DealershipMgr.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.RegionID = new SelectList(db.Regions, "RegionID", "RegionName", location.RegionID);
+
             return View(location);
         }
 
@@ -73,7 +72,6 @@ namespace DealershipMgr.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.RegionID = new SelectList(db.Regions, "RegionID", "RegionName", location.RegionID);
             return View(location);
         }
 
@@ -82,7 +80,7 @@ namespace DealershipMgr.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "LocationID,LocationName,RegionLocID")] Location location)
+        public ActionResult Edit([Bind(Include = "LocationID,LocationName,SalesYtd,SalesGoal,MetSalesGoal")] Location location)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +88,6 @@ namespace DealershipMgr.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.RegionID = new SelectList(db.Regions, "RegionID", "RegionName", location.RegionID);
             return View(location);
         }
 

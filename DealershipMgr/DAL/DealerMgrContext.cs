@@ -18,7 +18,6 @@ namespace DealershipMgr.DAL
         public DbSet<Client> Clients { get; set; }
         public DbSet<Location> Locations { get; set; }
         public DbSet<Manager> Managers { get; set; }
-        public DbSet<Region> Regions { get; set; }
         public DbSet<Vehicle> Vehicles { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

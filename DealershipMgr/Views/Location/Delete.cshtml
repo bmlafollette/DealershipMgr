@@ -20,11 +20,40 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Region.RegionName)
+            @Html.DisplayNameFor(model => model.SalesYtd)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Region.RegionName)
+            @Html.DisplayFor(model => model.SalesYtd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SalesGoal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SalesGoal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MetSalesGoal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MetSalesGoal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => Model.Salespersons)
+        </dt>
+
+        <dd>
+            @{
+                foreach (var salesperson in Model.Salespersons)
+                {
+                    @salesperson.ID @:  @salesperson.FullName <br />
+                }
+            }
         </dd>
 
     </dl>

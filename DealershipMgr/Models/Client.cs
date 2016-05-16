@@ -17,7 +17,7 @@ namespace DealershipMgr.Models
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
 
-        [Display(Name = "Full Name")]
+        [Display(Name = "Client")]
         public string FullName
         {
             get

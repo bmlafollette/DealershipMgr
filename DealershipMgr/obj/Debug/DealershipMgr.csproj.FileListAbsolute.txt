@@ -39,6 +39,6 @@ C:\Users\Bobbie\Desktop\ElevenFifty\VisualStudio\DealershipMgr\DealershipMgr\bin
 C:\Users\Bobbie\Desktop\ElevenFifty\VisualStudio\DealershipMgr\DealershipMgr\bin\System.Web.WebPages.Razor.xml
 C:\Users\Bobbie\Desktop\ElevenFifty\VisualStudio\DealershipMgr\DealershipMgr\bin\Antlr3.Runtime.pdb
 C:\Users\Bobbie\Desktop\ElevenFifty\VisualStudio\DealershipMgr\DealershipMgr\bin\Newtonsoft.Json.xml
-C:\Users\Bobbie\Desktop\ElevenFifty\VisualStudio\DealershipMgr\DealershipMgr\obj\Debug\DealershipMgr.csprojResolveAssemblyReference.cache
 C:\Users\Bobbie\Desktop\ElevenFifty\VisualStudio\DealershipMgr\DealershipMgr\obj\Debug\DealershipMgr.dll
 C:\Users\Bobbie\Desktop\ElevenFifty\VisualStudio\DealershipMgr\DealershipMgr\obj\Debug\DealershipMgr.pdb
+C:\Users\Bobbie\Desktop\ElevenFifty\VisualStudio\DealershipMgr\DealershipMgr\obj\Debug\DealershipMgr.csprojResolveAssemblyReference.cache

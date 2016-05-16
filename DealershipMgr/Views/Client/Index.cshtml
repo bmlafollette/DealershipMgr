@@ -35,6 +35,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Salesperson.FullName)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Vehicles)
+        </th>
         <th></th>
     </tr>
 
@@ -63,6 +66,14 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Salesperson.FullName)
+        </td>
+        <td>
+            @{
+                foreach (var vehicle in item.Vehicles)
+                {
+                    @vehicle.VehicleID @:  @vehicle.FullName <br />
+                }
+            }
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ClientID }) |

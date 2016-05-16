@@ -51,28 +51,21 @@ namespace DealershipMgr.DAL
             vehicles.ForEach(s => context.Vehicles.Add(s));
             context.SaveChanges();
 
-            var regions = new List<Region>
-            {
-                new Region{RegionName="North",SalesYtd=2195364,SalesGoal=3200000,MetSalesGoal=false},
-                new Region{RegionName="South",SalesYtd=28657396,SalesGoal=3200000,MetSalesGoal=false},
-                new Region{RegionName="East",SalesYtd=2594723,SalesGoal=3200000,MetSalesGoal=false},
-                new Region{RegionName="West",SalesYtd=3034927,SalesGoal=3200000,MetSalesGoal=false},
-            };
-            regions.ForEach(s => context.Regions.Add(s));
-            context.SaveChanges();
-
             var managers = new List<Manager>
             {
                 new Manager{FirstName="Mike",LastName="Young",HireDate=DateTime.Parse("2011-04-05")},
-                new Manager{FirstName="Billie",LastName="Koger",HireDate=DateTime.Parse("2013-06-05")}
+                new Manager{FirstName="Billie",LastName="Koger",HireDate=DateTime.Parse("2013-06-05")},
+                new Manager{FirstName="Katie",LastName="Miller",HireDate=DateTime.Parse("2010-04-01")}
             };
             managers.ForEach(s => context.Managers.Add(s));
             context.SaveChanges();
 
             var locations = new List<Location>
             {
-                new Location{LocationName="Indianapolis"},
-                new Location{LocationName="Greenwood"}
+                new Location{LocationName="Indianapolis",SalesYtd=2195364,SalesGoal=3200000,MetSalesGoal=false},
+                new Location{LocationName="Greenwood",SalesYtd=2865736,SalesGoal=3200000,MetSalesGoal=false},
+                new Location{LocationName="Muncie",SalesYtd=3384286,SalesGoal=3200000,MetSalesGoal=true},
+                new Location{LocationName="Avon",SalesYtd=2594723,SalesGoal=3200000,MetSalesGoal=false}
             };
             locations.ForEach(s => context.Locations.Add(s));
             context.SaveChanges();

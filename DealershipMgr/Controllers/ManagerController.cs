@@ -8,122 +8,110 @@ using System.Web;
 using System.Web.Mvc;
 using DealershipMgr.DAL;
 using DealershipMgr.Models;
-using DealershipMgr.ViewModels;
-using System.Data.Entity.Infrastructure;
 
 namespace DealershipMgr.Controllers
 {
-    public class RegionController : Controller
+    public class ManagerController : Controller
     {
         private DealerMgrContext db = new DealerMgrContext();
 
-        // GET: Region
-        public ActionResult Index(int? id, int? locationID)
+        // GET: Manager
+        public ActionResult Index()
         {
-            var viewModel = new RegionIndexData();
-            viewModel.Regions = db.Regions
-                .Include(i => i.Locations.Select(c => c.Salespersons))
-                .OrderBy(i => i.RegionName);
-
-            if (id != null)
-            {
-                ViewBag.RegionID = id.Value;
-                viewModel.Locations = viewModel.Regions.Where(
-                    i => i.RegionID == id.Value).Single().Locations;
-            }
-            return View(viewModel);
+            return View(db.Managers.ToList());
         }
 
-        // GET: Region/Details/5
+        // GET: Manager/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Region region = db.Regions.Find(id);
-            if (region == null)
+            Manager manager = db.Managers.Find(id);
+            if (manager == null)
             {
                 return HttpNotFound();
             }
-            return View(region);
+            return View(manager);
         }
 
-        // GET: Region/Create
+        // GET: Manager/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Region/Create
+        // POST: Manager/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "RegionID,RegionName,SalesYtd,SalesGoal,MetSalesGoal")] Region region)
+        public ActionResult Create([Bind(Include = "ID,LastName,FirstName,HireDate,SalespersonID")] Manager manager)
         {
             if (ModelState.IsValid)
             {
-                db.Regions.Add(region);
+                db.Managers.Add(manager);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(region);
+
+            return View(manager);
         }
 
-        // GET: Region/Edit/5
+        // GET: Manager/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Region region = db.Regions.Find(id);
-            if (region == null)
+            Manager manager = db.Managers.Find(id);
+            if (manager == null)
             {
                 return HttpNotFound();
             }
-            return View(region);
+            return View(manager);
         }
 
-        // POST: Region/Edit/5
+        // POST: Manager/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "RegionID,RegionName,SalesYtd,SalesGoal,MetSalesGoal")] Region region)
+        public ActionResult Edit([Bind(Include = "ID,LastName,FirstName,HireDate,SalespersonID")] Manager manager)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(region).State = EntityState.Modified;
+                db.Entry(manager).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(region);
+            return View(manager);
         }
 
-        // GET: Region/Delete/5
+        // GET: Manager/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Region region = db.Regions.Find(id);
-            if (region == null)
+            Manager manager = db.Managers.Find(id);
+            if (manager == null)
             {
                 return HttpNotFound();
             }
-            return View(region);
+            return View(manager);
         }
 
-        // POST: Region/Delete/5
+        // POST: Manager/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Region region = db.Regions.Find(id);
-            db.Regions.Remove(region);
+            Manager manager = db.Managers.Find(id);
+            db.Managers.Remove(manager);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

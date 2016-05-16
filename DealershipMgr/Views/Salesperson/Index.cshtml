@@ -30,10 +30,10 @@
             @Html.DisplayNameFor(model => model.MetSalesGoal)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Location.LocationName)
+            @Html.DisplayNameFor(model => model.Manager.FullName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Region.RegionName)
+            @Html.DisplayNameFor(model => model.Location.LocationName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Clients)
@@ -62,10 +62,10 @@
             @Html.DisplayFor(modelItem => item.MetSalesGoal)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Location.LocationName)
+            @Html.DisplayFor(modelItem => item.Manager.FullName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Region.RegionName)
+            @Html.DisplayFor(modelItem => item.Location.LocationName)
         </td>
         <td>
             @{

@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<DealershipMgr.Models.Location>
 
 @{
-    ViewBag.Title = "Locations";
+    ViewBag.Title = "Index";
 }
 
 <h2>Locations</h2>
@@ -15,7 +15,16 @@
             @Html.DisplayNameFor(model => model.LocationName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Region.RegionName)
+            @Html.DisplayNameFor(model => model.SalesYtd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SalesGoal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MetSalesGoal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Salespersons)
         </th>
         <th></th>
     </tr>
@@ -26,7 +35,21 @@
             @Html.DisplayFor(modelItem => item.LocationName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Region.RegionName)
+            @Html.DisplayFor(modelItem => item.SalesYtd)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SalesGoal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MetSalesGoal)
+        </td>
+        <td>
+            @{
+                foreach (var salesperson in item.Salespersons)
+                {
+                    @salesperson.ID @:  @salesperson.FullName <br />
+                }
+            }
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.LocationID }) |

@@ -5,10 +5,10 @@ using System.Web;
 
 namespace DealershipMgr.ViewModels
 {
-    public class AssignedLocationData
+    public class AssignedSalespersonData
     {
-        public int LocationID { get; set; }
-        public string LocationName { get; set; }
+        public int SalespersonID { get; set; }
+        public string FullName { get; set; }
         public bool Assigned { get; set; }
     }
 }

@@ -76,6 +76,19 @@
             @Html.DisplayFor(model => model.Salesperson.FullName)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => Model.Vehicles)
+        </dt>
+
+        <dd>
+            @{
+                foreach (var vehicle in Model.Vehicles)
+                {
+                    @vehicle.VehicleID @:  @vehicle.FullName <br />
+                }
+            }
+        </dd>
+
     </dl>
 
     @using (Html.BeginForm()) {

@@ -48,7 +48,6 @@ namespace DealershipMgr.Models
 
         public virtual Manager Manager { get; set; }
         public virtual Location Location { get; set; }
-        public virtual Region Region { get; set; }
         public virtual ICollection<Client> Clients { get; set; }
         public virtual ICollection<Vehicle> Vehicles { get; set; }
     }

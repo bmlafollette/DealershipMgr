@@ -82,6 +82,18 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => Model.Vehicles, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @{
+                    foreach (var vehicle in Model.Vehicles)
+                    {
+                        @vehicle.VehicleID @:  @vehicle.FullName <br />
+                }
+                }
+            </div>
+        </div>
+
+        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>

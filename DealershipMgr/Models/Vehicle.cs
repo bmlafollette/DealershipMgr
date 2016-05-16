@@ -32,10 +32,6 @@ namespace DealershipMgr.Models
         [Display(Name = "VIN")]
         public string VehicleVIN { get; set; }
 
-        //[Key]
-        //[ForeignKey("Client")]
-        //public int ClientID { get; set; }
-
         [DataType(DataType.Currency)]
         [Column(TypeName = "money")]
         [Display(Name = "Price")]
