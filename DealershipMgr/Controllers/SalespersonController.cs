@@ -19,6 +19,7 @@ namespace DealershipMgr.Controllers
         public ActionResult Index()
         {
             var salespersons = db.Salespersons.Include(c => c.Location);
+            var salespersons2 = db.Salespersons.Include(c => c.Region);
             return View(db.Salespersons.ToList());
         }
 

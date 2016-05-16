@@ -31,24 +31,6 @@ namespace DealershipMgr.Controllers
                 viewModel.Locations = viewModel.Regions.Where(
                     i => i.RegionID == id.Value).Single().Locations;
             }
-
-            /*if (locationID != null)
-            {
-                ViewBag.LocationID = locationID.Value;
-                // Lazy loading
-                //viewModel.Enrollments = viewModel.Courses.Where(
-                //    x => x.CourseID == courseID).Single().Enrollments;
-                // Explicit loading
-                var selectedLocation = viewModel.Locations.Where(x => x.LocationID == locationID).Single();
-                db.Entry(selectedLocation).Collection(x => x.Enrollments).Load();
-                foreach (Enrollment enrollment in selectedCourse.Enrollments)
-                {
-                    db.Entry(enrollment).Reference(x => x.Student).Load();
-                }
-
-                viewModel.Enrollments = selectedCourse.Enrollments;
-            }*/
-
             return View(viewModel);
         }
 
