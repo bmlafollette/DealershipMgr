@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using DealershipMgr.DAL;
 using DealershipMgr.Models;
+using DealershipMgr.ViewModels;
 
 namespace DealershipMgr.Controllers
 {

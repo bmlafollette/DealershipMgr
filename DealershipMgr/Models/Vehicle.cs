@@ -37,6 +37,8 @@ namespace DealershipMgr.Models
         [Display(Name = "Price")]
         public decimal Price { get; set; }
 
+        public int? ClientID { get; set; }
+
         public virtual Client Client { get; set; }
         public virtual Salesperson Salesperson { get; set; }
     }
